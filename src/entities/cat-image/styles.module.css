@@ -1,0 +1,10 @@
+.container {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius);
+  aspect-ratio: 1;
+}
