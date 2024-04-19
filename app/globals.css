@@ -1,6 +1,8 @@
 :root {
   --max-width: 600px;
   --border-radius: 12px;
+  --primary-color: #faa620;
+  --secondary-color: #fff9e8;
 }
 
 *,
@@ -21,7 +23,6 @@ body {
 body {
   display: flex;
   min-width: 400px;
-  min-height: 600px;
   flex-direction: column;
   align-items: center;
 }
