@@ -4,6 +4,7 @@ import './globals.css';
 
 import { Roboto } from 'next/font/google';
 
+import { ThemeProvider } from '@/src/_app/theme-context';
 import { Header } from '@/src/widgets/header';
 
 const roboto = Roboto({
@@ -19,8 +20,10 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className={roboto.className}>
-        <Header />
-        {children}
+        <ThemeProvider>
+          <Header />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

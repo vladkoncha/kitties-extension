@@ -1,0 +1,8 @@
+.primary {
+  background-color: var(--primary-color-dark);
+}
+
+.secondary {
+  background-color: var(--secondary-color-dark);
+  color: var(--primary-color-dark);
+}
