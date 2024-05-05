@@ -14,3 +14,14 @@
   display: flex;
   gap: 0.25rem;
 }
+
+.cats-list {
+  display: flex;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  list-style: none;
+}
+
+.cats-list-item {
+  flex: 0 0 100%;
+}

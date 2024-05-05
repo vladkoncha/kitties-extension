@@ -1,5 +1,9 @@
 import styles from './styles.module.css';
 
 export const CatLoader = () => {
-  return <span className={styles.loader}></span>;
+  return (
+    <div className={styles.container}>
+      <span className={styles.loader}></span>
+    </div>
+  );
 };

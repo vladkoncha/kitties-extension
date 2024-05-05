@@ -9,8 +9,6 @@ export const CopyButton = ({ image }: CopyButtonProps) => {
       return;
     }
 
-    console.log(window.devicePixelRatio);
-
     const canvas = document.createElement('canvas');
     canvas.width = IMAGE_SIZE;
     canvas.height = IMAGE_SIZE;
