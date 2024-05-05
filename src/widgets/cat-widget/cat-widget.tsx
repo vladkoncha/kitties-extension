@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 
 import { useCats } from '@/src/_app/store/cats';
@@ -8,48 +8,37 @@ import { CatLoader } from '@/src/entities/cat-image/ui/loader';
 import { CopyButton } from '@/src/features/copy-button';
 import { SaveButton } from '@/src/features/save-button';
 import { Button } from '@/src/shared/ui/button';
+import { ArrowLeft } from '@/src/shared/ui/icons/arrow-left';
+import { ArrowRight } from '@/src/shared/ui/icons/arrow-right';
 
 import styles from './styles.module.css';
 
 export const CatWidget = observer(() => {
   const [image, setImage] = useState<HTMLImageElement | null>(null);
-  const [imageSrc, setImageSrc] = useState('');
   const catsStore = useCats();
-  const selectedRef = useRef<HTMLLIElement | null>(null);
+  const currentCatRef = useRef<HTMLLIElement | null>(null);
   const catsUrlsList = catsStore?.getCatsUrls();
 
-  const fetchCatImage = async () => {
-    const response = await fetch('https://cataas.com/cat?width=720&height=720');
-    setImageSrc(URL.createObjectURL(await response.blob()));
-  };
+  const scrollToCurrentCat = () =>
+    currentCatRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center',
+    });
 
   const onNextCatButtonClick = () => {
     flushSync(() => {
       catsStore?.nextCat();
     });
-    selectedRef.current?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'center',
-    });
+    scrollToCurrentCat();
   };
 
   const onPrevCatButtonClick = () => {
     flushSync(() => {
       catsStore?.prevCat();
     });
-    selectedRef.current?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'center',
-    });
+    scrollToCurrentCat();
   };
-
-  useEffect(() => {
-    if (!imageSrc) {
-      fetchCatImage();
-    }
-  }, [imageSrc]);
 
   return (
     <section className={styles.section}>
@@ -61,7 +50,7 @@ export const CatWidget = observer(() => {
             <li
               key={url}
               className={styles['cats-list-item']}
-              ref={catsStore?.getCatIndex() === index ? selectedRef : null}
+              ref={catsStore?.getCatIndex() === index ? currentCatRef : null}
             >
               <CatImage
                 alt=""
@@ -80,16 +69,21 @@ export const CatWidget = observer(() => {
           {/* <CopyButton image={image} /> */}
           {/* <SaveButton image={image} /> */}
         </div>
-        <div>
+        <div className={styles['arrows-container']}>
           <Button
+            style={{ width: '5rem', height: '3rem' }}
             disabled={catsStore?.getCatIndex() === 0}
             styleType="secondary"
             onClick={onPrevCatButtonClick}
           >
-            Пред. котик
+            <ArrowLeft />
           </Button>
-          <Button styleType="primary" onClick={onNextCatButtonClick}>
-            Новый котик
+          <Button
+            style={{ width: '5rem', height: '3rem' }}
+            styleType="primary"
+            onClick={onNextCatButtonClick}
+          >
+            <ArrowRight />
           </Button>
         </div>
       </div>

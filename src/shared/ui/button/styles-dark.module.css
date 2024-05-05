@@ -1,5 +1,6 @@
 .primary {
   background-color: var(--primary-color-dark);
+  color: #fff;
 }
 
 .secondary {

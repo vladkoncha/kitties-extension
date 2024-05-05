@@ -10,6 +10,11 @@
   gap: 0.25rem;
 }
 
+.arrows-container {
+  display: flex;
+  gap: 0.25rem;
+}
+
 .copy-save-buttons {
   display: flex;
   gap: 0.25rem;

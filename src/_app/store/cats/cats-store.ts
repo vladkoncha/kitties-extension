@@ -13,7 +13,7 @@ export class CatsStore {
 
   async #initCats() {
     const catsImages: Promise<string>[] = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 2; i++) {
       catsImages.push(fetchCatImage());
     }
     const catsImagesUrls = await Promise.all(catsImages);
@@ -38,6 +38,7 @@ export class CatsStore {
 
   nextCat() {
     if (this.currentCatIndex >= this.catsUrls.length - 1) {
+      this.#preloadNextCat();
       return;
     }
     this.currentCatIndex++;
