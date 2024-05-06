@@ -1,3 +1,5 @@
+'use client';
+
 import { useTheme } from '@/src/_app/theme-context';
 import { IconButton } from '@/src/shared/ui/icon-button';
 import { DarkTheme } from '@/src/shared/ui/icons/dark-theme';

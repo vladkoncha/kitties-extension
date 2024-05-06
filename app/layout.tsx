@@ -1,7 +1,6 @@
-'use client';
-
 import './globals.css';
 
+import { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 
 import { CatsProvider } from '@/src/_app/store/cats';
@@ -13,6 +12,10 @@ const roboto = Roboto({
   subsets: ['cyrillic', 'latin'],
   weight: ['300', '400', '500', '700'],
 });
+
+export const metadata: Metadata = {
+  title: 'Котики',
+};
 
 export default function RootLayout({
   children,
