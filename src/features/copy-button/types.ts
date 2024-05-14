@@ -1,3 +1,5 @@
+import { RefObject } from 'react';
+
 export interface CopyButtonProps {
-  image: HTMLImageElement | null;
+  imageContainerRef: RefObject<HTMLDivElement | null>;
 }

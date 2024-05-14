@@ -7,13 +7,12 @@ import styles from './styles.module.css';
 import { CatImageProps } from './types';
 import { CatLoader } from './ui/loader';
 
-export const CatImage = ({ alt, src, setImage }: CatImageProps) => {
+export const CatImage = ({ alt, src }: CatImageProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const ref = useRef<HTMLImageElement>(null);
 
   const handleImageLoad = () => {
     setIsLoading(false);
-    setImage(ref.current);
   };
 
   return (

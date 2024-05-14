@@ -29,4 +29,17 @@
 
 .cats-list-item {
   flex: 0 0 100%;
+  border-radius: var(--border-radius);
+}
+
+.image-container {
+  position: relative;
+}
+
+.image-text {
+  position: absolute;
+  font-size: 3rem;
+  inset: auto 0 2rem;
+  text-align: center;
+  text-shadow: 1px 1px 2px black;
 }

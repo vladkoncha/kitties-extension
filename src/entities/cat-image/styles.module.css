@@ -5,6 +5,5 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-  border-radius: var(--border-radius);
   aspect-ratio: 1;
 }

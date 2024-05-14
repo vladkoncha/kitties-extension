@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 
 import { useCats } from '@/src/_app/store/cats';
+import { useEditor } from '@/src/_app/store/editor';
 import { CatImage } from '@/src/entities/cat-image';
 import { CatLoader } from '@/src/entities/cat-image/ui/loader';
 import { CopyButton } from '@/src/features/copy-button';
@@ -14,9 +15,11 @@ import { ArrowRight } from '@/src/shared/ui/icons/arrow-right';
 import styles from './styles.module.css';
 
 export const CatWidget = observer(() => {
-  const [image, setImage] = useState<HTMLImageElement | null>(null);
   const catsStore = useCats();
+  const editor = useEditor();
   const currentCatRef = useRef<HTMLLIElement | null>(null);
+  const imageContainerRef = useRef<HTMLDivElement | null>(null);
+
   const catsUrlsList = catsStore?.getCatsUrls();
 
   const scrollToCurrentCat = () =>
@@ -52,13 +55,15 @@ export const CatWidget = observer(() => {
               className={styles['cats-list-item']}
               ref={catsStore?.getCatIndex() === index ? currentCatRef : null}
             >
-              <CatImage
-                alt=""
-                src={url}
-                setImage={
-                  catsStore?.getCatIndex() === index ? setImage : () => {}
+              <div
+                className={styles['image-container']}
+                ref={
+                  catsStore?.getCatIndex() === index ? imageContainerRef : null
                 }
-              />
+              >
+                <CatImage alt="" src={url} />
+                <p className={styles['image-text']}>{editor?.getText()}</p>
+              </div>
             </li>
           ))}
         </ul>
@@ -66,8 +71,8 @@ export const CatWidget = observer(() => {
 
       <div className={styles['buttons-container']}>
         <div className={styles['copy-save-buttons']}>
-          {/* <CopyButton image={image} /> */}
-          {/* <SaveButton image={image} /> */}
+          <CopyButton imageContainerRef={imageContainerRef} />
+          <SaveButton imageContainerRef={imageContainerRef} />
         </div>
         <div className={styles['arrows-container']}>
           <Button

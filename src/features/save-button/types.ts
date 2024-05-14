@@ -1,3 +1,5 @@
+import { RefObject } from 'react';
+
 export interface SaveButtonProps {
-  image: HTMLImageElement | null;
+  imageContainerRef: RefObject<HTMLDivElement | null>;
 }

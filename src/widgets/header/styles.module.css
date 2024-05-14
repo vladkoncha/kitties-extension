@@ -7,7 +7,7 @@
   max-width: var(--max-width);
   height: 3rem;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: calc(var(--padding-size) * 0.5) var(--padding-size);
   margin-top: 0.5rem;
 }
@@ -15,10 +15,4 @@
 .title {
   font-size: 1.75rem;
   font-weight: 300;
-}
-
-.theme-switcher-wrapper {
-  position: absolute;
-  right: var(--padding-size);
-  margin: 0 0 0 auto;
 }

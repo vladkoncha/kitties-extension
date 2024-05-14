@@ -1,7 +1,7 @@
 .icon-button {
-  width: 2.25rem;
-  height: 2.25rem;
-  padding: 0.25rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0.5rem;
   border: 0;
   border-radius: 50%;
   background-color: transparent;
@@ -11,7 +11,7 @@
 
 .icon-button:hover,
 .icon-button:focus-visible {
-  background-color: var(--secondary-color);
+  background-color: #00000010;
   filter: brightness(110%);
   transform: scale(105%);
 }
