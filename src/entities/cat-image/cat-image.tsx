@@ -21,6 +21,7 @@ export const CatImage = ({ alt, src }: CatImageProps) => {
       {src && (
         <Image
           fill
+          draggable="false"
           crossOrigin="anonymous"
           ref={ref}
           src={src}

@@ -4,7 +4,7 @@ import { Color, TextSize } from './types';
 
 export class EditorStore {
   private text = '';
-  private textSize: TextSize = 'S';
+  private textSize: TextSize = 'M';
   private color: Color = 'white';
 
   constructor() {

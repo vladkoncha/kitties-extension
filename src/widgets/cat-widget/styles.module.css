@@ -37,14 +37,8 @@
 }
 
 .image-text {
-  position: absolute;
-
-  /*
-    TODO: задавать font-size относительно размера блока 
-    для консистентности между разными размерами окна 
-  */
+  width: fit-content;
   font-size: 3rem;
-  inset: auto 0 2rem;
   text-align: center;
   text-shadow: 1px 1px 2px black;
 }

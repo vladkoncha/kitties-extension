@@ -1,15 +1,17 @@
 'use client';
 
 import clsx from 'clsx';
+import { observer } from 'mobx-react-lite';
 
 import { useEditor } from '@/src/_app/store/editor';
 import { useTheme } from '@/src/_app/theme-context';
+import { TEXT_SIZES } from '@/src/shared/constants/text-sizes';
 
 import styles from './styles.module.css';
 import stylesDark from './styles-dark.module.css';
 import stylesLight from './styles-light.module.css';
 
-export const ImageTextForm = () => {
+export const ImageTextForm = observer(() => {
   const theme = useTheme();
   const editor = useEditor();
   const stylesTheme = theme.style === 'light' ? stylesLight : stylesDark;
@@ -27,7 +29,23 @@ export const ImageTextForm = () => {
           onChange={(e) => editor?.setText(e.target.value)}
         />
       </div>
-      {/* TODO: */}
+      <fieldset className={styles['text-size-field']}>
+        <legend>Размер</legend>
+        {TEXT_SIZES.map((size) => (
+          <div key={size} className={styles['radio-item']}>
+            <input
+              type="radio"
+              id={size}
+              name="text-size"
+              value={size}
+              checked={size === editor?.getTextSize()}
+              onChange={() => editor?.setTextSize(size)}
+            />
+            <label htmlFor={size}>{size}</label>
+          </div>
+        ))}
+      </fieldset>
+
       {/* <div className={styles['form-item']}>
         <label htmlFor="size">Размер</label>
         <input type="number" min="10" max="200" name="size" id="size" />
@@ -51,4 +69,4 @@ export const ImageTextForm = () => {
       </div> */}
     </form>
   );
-};
+});

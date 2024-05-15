@@ -1,0 +1,11 @@
+.draggable-wrapper {
+  position: absolute;
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  align-items: center;
+  justify-content: center;
+  cursor: move;
+  touch-action: none;
+  user-select: none;
+}

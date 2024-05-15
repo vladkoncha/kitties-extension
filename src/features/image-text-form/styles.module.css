@@ -15,6 +15,22 @@
 .textarea {
   min-height: 5rem;
   padding: 0.5rem;
+  border-radius: calc(var(--border-radius) * 0.75);
   line-height: 125%;
   resize: vertical;
+}
+
+.text-size-field {
+  display: flex;
+  width: fit-content;
+  padding: 0.5rem 1rem 1rem;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: calc(var(--border-radius) * 0.75);
+  gap: 1rem;
+}
+
+.radio-item {
+  display: flex;
+  gap: 0.25rem;
 }

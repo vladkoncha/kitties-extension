@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { flushSync } from 'react-dom';
 
 import { useCats } from '@/src/_app/store/cats';
@@ -8,7 +8,9 @@ import { CatImage } from '@/src/entities/cat-image';
 import { CatLoader } from '@/src/entities/cat-image/ui/loader';
 import { CopyButton } from '@/src/features/copy-button';
 import { SaveButton } from '@/src/features/save-button';
+import { TEXT_SIZES_MAP } from '@/src/shared/constants/text-sizes';
 import { Button } from '@/src/shared/ui/button';
+import { DraggableWrapper } from '@/src/shared/ui/draggable-wrapper';
 import { ArrowLeft } from '@/src/shared/ui/icons/arrow-left';
 import { ArrowRight } from '@/src/shared/ui/icons/arrow-right';
 
@@ -19,8 +21,18 @@ export const CatWidget = observer(() => {
   const editor = useEditor();
   const currentCatRef = useRef<HTMLLIElement | null>(null);
   const imageContainerRef = useRef<HTMLDivElement | null>(null);
+  const textRef = useRef<HTMLParagraphElement | null>(null);
 
   const catsUrlsList = catsStore?.getCatsUrls();
+
+  function getFontSize() {
+    if (!imageContainerRef.current || !textRef.current) {
+      return;
+    }
+    const width = imageContainerRef.current.clientWidth;
+    const fontSize = width * TEXT_SIZES_MAP[editor?.getTextSize() ?? 'M'];
+    return `${fontSize}px`;
+  }
 
   const scrollToCurrentCat = () =>
     currentCatRef.current?.scrollIntoView({
@@ -62,7 +74,22 @@ export const CatWidget = observer(() => {
                 }
               >
                 <CatImage alt="" src={url} />
-                <p className={styles['image-text']}>{editor?.getText()}</p>
+                {catsStore?.getCatIndex() === index && (
+                  <DraggableWrapper
+                    style={{
+                      inset: 'auto 0 2rem 50%',
+                      transform: 'translateX(-50%)',
+                    }}
+                  >
+                    <p
+                      className={styles['image-text']}
+                      ref={textRef}
+                      style={{ fontSize: getFontSize() }}
+                    >
+                      {editor?.getText()}
+                    </p>
+                  </DraggableWrapper>
+                )}
               </div>
             </li>
           ))}
