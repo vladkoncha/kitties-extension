@@ -38,6 +38,11 @@
 
 .image-text {
   position: absolute;
+
+  /*
+    TODO: задавать font-size относительно размера блока 
+    для консистентности между разными размерами окна 
+  */
   font-size: 3rem;
   inset: auto 0 2rem;
   text-align: center;

@@ -1,12 +1,8 @@
 import html2canvas from 'html2canvas';
 
-import { IMAGE_SIZE } from '../constants/image-size';
-
 export default async function copyImage(imageElement: HTMLDivElement) {
   const canvas = await html2canvas(imageElement, {
     useCORS: true,
-    windowWidth: IMAGE_SIZE,
-    scale: 2,
   });
 
   canvas.toBlob((blob) => {
