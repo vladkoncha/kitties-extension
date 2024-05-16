@@ -7,20 +7,20 @@
   background-color: transparent;
   cursor: pointer;
   transition: all 0.1s ease-in-out;
-}
 
-.icon-button:hover,
-.icon-button:focus-visible {
-  background-color: #00000010;
-  filter: brightness(110%);
-  transform: scale(105%);
-}
+  &:hover,
+  &:focus-visible {
+    background-color: #00000010;
+    filter: brightness(110%);
+    transform: scale(105%);
+  }
 
-.icon-button:active {
-  filter: brightness(95%);
-  transform: scale(95%);
-}
+  &:active {
+    filter: brightness(95%);
+    transform: scale(95%);
+  }
 
-.icon-button:disabled {
-  cursor: not-allowed;
+  &:disabled {
+    cursor: not-allowed;
+  }
 }

@@ -74,7 +74,14 @@ export const CatWidget = observer(() => {
                 }
               >
                 <CatImage alt="" src={url} />
-                {catsStore?.getCatIndex() === index && (
+                <div
+                  className={styles['text-wrapper']}
+                  style={{
+                    visibility:
+                      catsStore?.getCatIndex() === index ? 'visible' : 'hidden',
+                    opacity: catsStore?.getCatIndex() === index ? '1' : '0',
+                  }}
+                >
                   <DraggableWrapper
                     style={{
                       inset: 'auto 0 2rem 50%',
@@ -84,12 +91,15 @@ export const CatWidget = observer(() => {
                     <p
                       className={styles['image-text']}
                       ref={textRef}
-                      style={{ fontSize: getFontSize() }}
+                      style={{
+                        fontSize: getFontSize(),
+                        color: editor?.getColor()?.hex ?? '#FFFFFF',
+                      }}
                     >
                       {editor?.getText()}
                     </p>
                   </DraggableWrapper>
-                )}
+                </div>
               </div>
             </li>
           ))}

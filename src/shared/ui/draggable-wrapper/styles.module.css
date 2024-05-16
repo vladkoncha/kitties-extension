@@ -1,7 +1,8 @@
 .draggable-wrapper {
   position: absolute;
   display: flex;
-  width: fit-content;
+  width: max-content;
+  max-width: 100%;
   height: fit-content;
   align-items: center;
   justify-content: center;

@@ -1,0 +1,22 @@
+.color-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.color-swatch {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0;
+  border-radius: calc(var(--border-radius) * 0.5);
+  cursor: pointer;
+
+  &:focus-visible,
+  &:hover {
+    transform: scale(1.025);
+  }
+
+  &:active {
+    transform: scale(0.975);
+  }
+}

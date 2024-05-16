@@ -5,7 +5,7 @@ import { Color, TextSize } from './types';
 export class EditorStore {
   private text = '';
   private textSize: TextSize = 'M';
-  private color: Color = 'white';
+  private color: Color | null = null;
 
   constructor() {
     makeAutoObservable(this);

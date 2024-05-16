@@ -16,7 +16,20 @@ export const FormContainer = ({
 
   useEffect(() => {
     function handleClickOutside(event: TouchEvent | MouseEvent) {
-      if (event instanceof TouchEvent) {
+      if (event instanceof MouseEvent) {
+        if (
+          openButtonRef.current &&
+          openButtonRef.current.contains(event.target as Node)
+        ) {
+          return;
+        }
+        if (
+          formContainerRef.current &&
+          !formContainerRef.current.contains(event.target as Node)
+        ) {
+          setIsFormOpen(false);
+        }
+      } else if (event instanceof TouchEvent) {
         for (const touch of event.touches) {
           if (
             openButtonRef.current &&
@@ -31,19 +44,6 @@ export const FormContainer = ({
             setIsFormOpen(false);
             break;
           }
-        }
-      } else if (event instanceof MouseEvent) {
-        if (
-          openButtonRef.current &&
-          openButtonRef.current.contains(event.target as Node)
-        ) {
-          return;
-        }
-        if (
-          formContainerRef.current &&
-          !formContainerRef.current.contains(event.target as Node)
-        ) {
-          setIsFormOpen(false);
         }
       }
     }
